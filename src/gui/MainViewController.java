@@ -71,7 +71,7 @@ public class MainViewController implements Initializable {
 			T controller = loader.getController();
 //Para ativar a função InitializingAction é necessário o comando abaixo
 			InitializingAction.accept(controller); 
-//As dois comandos acima executa a função que foi passada por referencia
+//As dois comandos acima executa a função que foi passada por parametro
 		} catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
 		}
