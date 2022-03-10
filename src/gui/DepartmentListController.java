@@ -27,18 +27,18 @@ import model.entities.Department;
 import model.services.DepartmentService;
 
 public class DepartmentListController implements Initializable {
-	
+
 	private DepartmentService service;
 	
 	@FXML
 	private TableView<Department> tableViewDepartment;
-
+	
 	@FXML
 	private TableColumn<Department, Integer> tableColumnId;
-
+	
 	@FXML
 	private TableColumn<Department, String> tableColumnName;
-
+	
 	@FXML
 	private Button btNew;
 	
@@ -47,18 +47,19 @@ public class DepartmentListController implements Initializable {
 	@FXML
 	public void onBtNewAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
-		createDialogForm("/gui/DepartmentForm.fxml", parentStage);
+		Department obj = new Department();
+		createDialogForm(obj, "/gui/DepartmentForm.fxml", parentStage);
 	}
-
+	
+	public void setDepartmentService(DepartmentService service) {
+		this.service = service;
+	}
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
 	}
-	
-	public void setDepartmentService(DepartmentService service) {
-		this.service=service;
-	}
-	
+
 //Este é um metodo padrão do javaFX para iniciar o comportamento das colunas
 	private void initializeNodes() {
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("Id"));
@@ -67,34 +68,40 @@ public class DepartmentListController implements Initializable {
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewDepartment.prefHeightProperty().bind(stage.heightProperty());
 	}
-	
-	public void updateTableView () {
-		if(service==null) {
+
+	public void updateTableView() {
+		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
 		List<Department> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
 		tableViewDepartment.setItems(obsList);
 	}
+
 //O metodo abaixo recebe uma referencia para um Stage que criou a janela de dialogo
-	private void createDialogForm(String absoluteName, Stage parentStage) {
+	private void createDialogForm(Department obj, String absoluteName, Stage parentStage) {
 		try {
 //É necessario informar o nome da View que o metodo ira carregar (absoluteName) passada por parametro
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
+			DepartmentFormController controller = loader.getController();
+			controller.setDepartment(obj);
+			controller.updateFormData();
 //Quando vamos carregar uma janela de dialogo modal na frente da janela existente, é preciso instanciar um 
 //novo Stage (um palco na frente do outro)
-			
+
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Enter Department data");//configura o titulo da janela
-			dialogStage.setScene(new Scene(pane));//cria uma nova cena com elemento raiz 'pane'
-			dialogStage.setResizable(false);//desativa a possibilidade de redimensionar a janela
-			dialogStage.initOwner(parentStage);//associa esta janela com o 'pararentStage' (janela pai)
-			dialogStage.initModality(Modality.WINDOW_MODAL);//configura se a janela sera modal ou tera outro comportamento (no caso será modal sendo travada enquanto não fechar ela não é possivel acessar a janela anterior)			
+			dialogStage.setTitle("Enter Department data");// configura o titulo da janela
+			dialogStage.setScene(new Scene(pane));// cria uma nova cena com elemento raiz 'pane'
+			dialogStage.setResizable(false);// desativa a possibilidade de redimensionar a janela
+			dialogStage.initOwner(parentStage);// associa esta janela com o 'pararentStage' (janela pai)
+			dialogStage.initModality(Modality.WINDOW_MODAL);// configura se a janela sera modal ou tera outro
+															// comportamento (no caso será modal sendo travada enquanto
+															// não fechar ela não é possivel acessar a janela anterior)
 			dialogStage.showAndWait();
 		} catch (IOException e) {
 			Alerts.showAlert("IOException", "Error loading view", e.getMessage(), AlertType.ERROR);
 		}
 	}
-	
+
 }
