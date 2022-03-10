@@ -84,8 +84,10 @@ public class DepartmentListController implements Initializable {
 //É necessario informar o nome da View que o metodo ira carregar (absoluteName) passada por parametro
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
+//Instancia o objeto do tipo 'DepartmentFormController' para que receba a referencia do controller
 			DepartmentFormController controller = loader.getController();
 			controller.setDepartment(obj);
+			controller.setDepartmentService(service); //injeção de dependencia
 			controller.updateFormData();
 //Quando vamos carregar uma janela de dialogo modal na frente da janela existente, é preciso instanciar um 
 //novo Stage (um palco na frente do outro)
