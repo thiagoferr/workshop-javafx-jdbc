@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane prefHeight="194.0" prefWidth="656.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+<AnchorPane prefHeight="194.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DepartmentFormController">
    <children>
       <GridPane layoutX="60.0" layoutY="60.0" prefHeight="115.0" prefWidth="519.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columnConstraints>
@@ -25,8 +24,8 @@
           <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField editable="false" GridPane.columnIndex="1" />
-            <Label alignment="TOP_CENTER" contentDisplay="RIGHT" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <TextField fx:id="txtId" editable="false" GridPane.columnIndex="1" />
+            <Label fx:id="labelErrorName" alignment="TOP_CENTER" contentDisplay="RIGHT" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <opaqueInsets>
                   <Insets left="10.0" />
                </opaqueInsets>
@@ -36,11 +35,11 @@
             </Label>
             <Label text="Id" />
             <Label text="Name" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label GridPane.columnIndex="2" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Save">
+                  <Button fx:id="btSave" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="25.0" prefWidth="65.0" text="Save">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -48,7 +47,7 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Cancel">
+                  <Button fx:id="btCancel" mnemonicParsing="false" onAction="#onBtCancelAction" prefHeight="25.0" prefWidth="65.0" text="Cancel">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
