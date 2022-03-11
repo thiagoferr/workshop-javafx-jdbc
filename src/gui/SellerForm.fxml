@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,61 +11,85 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="194.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SellerFormController">
-   <children>
-      <GridPane layoutX="60.0" layoutY="60.0" prefHeight="115.0" prefWidth="519.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="42.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="185.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="10.0" prefWidth="222.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="58.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <TextField fx:id="txtId" editable="false" GridPane.columnIndex="1" />
-            <Label text="Id" />
-            <Label text="Name" GridPane.rowIndex="1" />
-            <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="labelErrorName" alignment="TOP_CENTER" contentDisplay="RIGHT" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <opaqueInsets>
-                  <Insets left="10.0" />
-               </opaqueInsets>
+<AnchorPane prefHeight="388.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SellerFormController">
+	<children>
+		<GridPane layoutX="60.0" layoutY="60.0" prefHeight="279.0" prefWidth="544.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="40.0">
+			<columnConstraints>
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="42.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="185.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="10.0" prefWidth="222.0" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints maxHeight="58.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+			</rowConstraints>
+			<children>
+				<TextField fx:id="txtId" editable="false" GridPane.columnIndex="1" />
+				<Label text="Id" />
+				<Label text="Name" GridPane.rowIndex="1" />
+				<TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+				<Label fx:id="labelErrorName" alignment="TOP_CENTER" contentDisplay="RIGHT" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
+					<opaqueInsets>
+						<Insets left="10.0" />
+					</opaqueInsets>
+					<GridPane.margin>
+						<Insets left="20.0" />
+					</GridPane.margin>
+				</Label>
+				<Label fx:id="labelErrorName1" alignment="TOP_CENTER" contentDisplay="RIGHT" textFill="RED" GridPane.columnIndex="2">
+					<opaqueInsets>
+						<Insets left="10.0" />
+					</opaqueInsets>
+					<GridPane.margin>
+						<Insets left="20.0" />
+					</GridPane.margin>
+				</Label>
+				<HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+					<children>
+						<Button fx:id="btSave" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="25.0" prefWidth="65.0" text="Save">
+							<opaqueInsets>
+								<Insets />
+							</opaqueInsets>
+							<HBox.margin>
+								<Insets top="5.0" />
+							</HBox.margin>
+						</Button>
+						<Button fx:id="btCancel" mnemonicParsing="false" onAction="#onBtCancelAction" prefHeight="25.0" prefWidth="65.0" text="Cancel">
+							<HBox.margin>
+								<Insets top="5.0" />
+							</HBox.margin>
+						</Button>
+					</children>
+				</HBox>
+            <Label text="Email" GridPane.rowIndex="2" />
+            <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Birth" GridPane.rowIndex="3" />
+            <Label text="Salary" GridPane.rowIndex="4" />
+            <TextField fx:id="txtBaseSalary" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <DatePicker fx:id="dpBirthDate" prefHeight="25.0" prefWidth="218.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="labelErrorBaseSalary" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets left="20.0" />
+                  <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="labelErrorName1" alignment="TOP_CENTER" contentDisplay="RIGHT" textFill="RED" GridPane.columnIndex="2">
-               <opaqueInsets>
-                  <Insets left="10.0" />
-               </opaqueInsets>
+            <Label fx:id="labelErrorBirthDate" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
-                  <Insets left="20.0" />
+                  <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Button fx:id="btSave" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="25.0" prefWidth="65.0" text="Save">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="btCancel" mnemonicParsing="false" onAction="#onBtCancelAction" prefHeight="25.0" prefWidth="65.0" text="Cancel">
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </GridPane>
-   </children>
-   <padding>
-      <Insets left="20.0" top="20.0" />
-   </padding>
+            <Label fx:id="labelErrorEmail" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+			</children>
+		</GridPane>
+	</children>
+	<padding>
+		<Insets left="20.0" top="20.0" />
+	</padding>
 </AnchorPane>
